@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="AutoHub.Api/AutoHub.Api.csproj" />
+  <Project Path="AutoHub.Domain/AutoHub.Domain.csproj" />
+</Solution>
