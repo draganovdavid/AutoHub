@@ -1,0 +1,12 @@
+﻿using AutoHub.Domain.Common;
+
+namespace AutoHub.Domain.Entities.Features
+{
+    public class FeatureCategory : BaseEntity<int>
+    {
+        public string Name { get; set; } = null!;
+
+
+        public ICollection<Feature> Features { get; set; } = new List<Feature>();
+    }
+}

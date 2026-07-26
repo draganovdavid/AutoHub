@@ -1,6 +1,9 @@
-﻿namespace AutoHub.Domain.Entities
+﻿using AutoHub.Domain.Common;
+using AutoHub.Domain.Entities.Vehicles;
+
+namespace AutoHub.Domain.Entities
 {
-    public class Brand
+    public class Brand : BaseEntity<int>
     {
         public string Name { get; set; } = null!;
 

@@ -13,10 +13,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AutoHub.Domain\AutoHub.Domain.csproj" />
+    <ProjectReference Include="..\AutoHub.Infrastructure\AutoHub.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>

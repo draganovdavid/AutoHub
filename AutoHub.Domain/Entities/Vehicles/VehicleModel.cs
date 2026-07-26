@@ -1,6 +1,6 @@
 ﻿using AutoHub.Domain.Common;
 
-namespace AutoHub.Domain.Entities
+namespace AutoHub.Domain.Entities.Vehicles
 {
     public class VehicleModel : BaseEntity<int>
     {
