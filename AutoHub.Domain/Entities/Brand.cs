@@ -7,6 +7,10 @@ namespace AutoHub.Domain.Entities
     {
         public string Name { get; set; } = null!;
 
+        public string? LogoUrl { get; set; }
+
+        public bool IsActive { get; set; } = true;
+
         public ICollection<VehicleModel> Models { get; set; } = new List<VehicleModel>();
     }
 }

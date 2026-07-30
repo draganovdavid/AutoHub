@@ -6,6 +6,7 @@ namespace AutoHub.Domain.Entities.Features
     {
         public string Name { get; set; } = null!;
 
+        public bool IsActive { get; set; } = true;
 
         public ICollection<Feature> Features { get; set; } = new List<Feature>();
     }

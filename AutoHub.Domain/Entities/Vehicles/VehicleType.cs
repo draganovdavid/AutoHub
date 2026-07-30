@@ -7,6 +7,11 @@ namespace AutoHub.Domain.Entities.Vehicles
     {
         public string Name { get; set; } = null!;
 
-        public ICollection<VehicleTypeFeature> VehicleTypeFeatures { get; set; } = new List<VehicleTypeFeature>();
+        public string Slug { get; set; } = null!;
+
+        public bool IsActive { get; set; } = true;
+
+        public ICollection<VehicleTypeFeature> VehicleTypeFeatures { get; set; }
+            = new List<VehicleTypeFeature>();
     }
 }

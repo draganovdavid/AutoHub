@@ -4,12 +4,14 @@ namespace AutoHub.Domain.Entities.Vehicles
 {
     public class Car : Vehicle
     {
+        public int Mileage { get; set; }
+
         public int Horsepower { get; set; }
 
         public int? EngineCapacity { get; set; }
 
         public string? VinNumber { get; set; }
-
+        
         public int EngineTypeId { get; set; }
         public EngineType EngineType { get; set; } = null!;
 
@@ -24,7 +26,5 @@ namespace AutoHub.Domain.Entities.Vehicles
 
         public int BodyTypeId { get; set; }
         public BodyType BodyType { get; set; } = null!;
-
-        public ICollection<VehicleSelectedFeature> Features { get; set; } = new List<VehicleSelectedFeature>();
     }
 }
