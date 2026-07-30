@@ -1,18 +1,20 @@
 ﻿using AutoHub.Domain.Entities.Listings;
+using AutoHub.Domain.Enums;
 using Microsoft.AspNetCore.Identity;
 
 namespace AutoHub.Domain.Identity
 {
     public class ApplicationUser : IdentityUser<Guid>
     {
-        public string DisplayName { get; set; } = null!;
+        public SellerType SellerType { get; set; } = SellerType.Individual;
 
-        public DateTime CreatedAt { get; init; } = DateTime.UtcNow;
+        // Попълват се само когато SellerType == Dealer; за частни лица остават null.
+        public string? CompanyName { get; set; }
 
-        public ICollection<Listing> Listings { get; set; }
-            = new List<Listing>();
+        public string? CompanyLogoUrl { get; set; }
 
-        public ICollection<Favorite> Favorites { get; set; }
-            = new List<Favorite>();
+        public ICollection<Listing> Listings { get; set; } = new List<Listing>();
+
+        public ICollection<Favorite> Favorites { get; set; } = new List<Favorite>();
     }
 }
