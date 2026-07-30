@@ -1,6 +1,8 @@
 ﻿using AutoHub.Domain.Entities;
+using AutoHub.Infrastructure.Persistence.Seed;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using static AutoHub.Domain.Constants.Vehicles.BrandConstants;
 
 namespace AutoHub.Infrastructure.Persistence.Configurations.Vehicles
 {
@@ -13,7 +15,7 @@ namespace AutoHub.Infrastructure.Persistence.Configurations.Vehicles
             builder.HasKey(b => b.Id);
 
             builder.Property(b => b.Name)
-                .HasMaxLength(100)
+                .HasMaxLength(BrandNameMaxLength)
                 .IsRequired();
 
             builder.Property(b => b.IsActive)
@@ -22,13 +24,12 @@ namespace AutoHub.Infrastructure.Persistence.Configurations.Vehicles
             builder.HasIndex(b => b.Name)
                 .IsUnique();
 
-            builder.Property(b => b.LogoUrl)
-                .HasMaxLength(500);
-
             builder.HasMany(b => b.Models)
                 .WithOne(m => m.Brand)
                 .HasForeignKey(m => m.BrandId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasData(BrandSeedData.Data);
         }
     }
 }

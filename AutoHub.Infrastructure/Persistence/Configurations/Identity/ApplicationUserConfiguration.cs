@@ -2,6 +2,7 @@
 using AutoHub.Domain.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using static AutoHub.Domain.Constants.Identity.ApplicationUserConstants;
 
 namespace AutoHub.Infrastructure.Persistence.Configurations.Identity
 {
@@ -16,10 +17,10 @@ namespace AutoHub.Infrastructure.Persistence.Configurations.Identity
                 .IsRequired();
 
             builder.Property(u => u.CompanyName)
-                .HasMaxLength(150);
+                .HasMaxLength(CompanyNameMaxLength);
 
             builder.Property(u => u.CompanyLogoUrl)
-                .HasMaxLength(500);
+                .HasMaxLength(CompanyLogoUrlMaxLength);
         }
     }
 }

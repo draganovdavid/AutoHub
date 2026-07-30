@@ -2,6 +2,7 @@
 using AutoHub.Domain.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using static AutoHub.Domain.Constants.Listings.ListingConstants;
 
 namespace AutoHub.Infrastructure.Persistence.Configurations.Listings
 {
@@ -15,17 +16,17 @@ namespace AutoHub.Infrastructure.Persistence.Configurations.Listings
 
             builder.Property(l => l.Title)
                 .IsRequired()
-                .HasMaxLength(150);
+                .HasMaxLength(TitleMaxLength);
 
             builder.Property(l => l.Description)
-                .HasMaxLength(4000);
+                .HasMaxLength(DescriptionMaxLength);
 
             builder.Property(l => l.Price)
                 .HasPrecision(18, 2);
 
             builder.Property(l => l.PhoneNumber)
                 .IsRequired()
-                .HasMaxLength(20);
+                .HasMaxLength(PhoneNumberMaxLength);
 
             builder.Property(l => l.Status)
                 .HasConversion<int>();

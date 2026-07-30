@@ -28,7 +28,6 @@
     <Folder Include="Storage\" />
     <Folder Include="Services\" />
     <Folder Include="Repositories\" />
-    <Folder Include="Persistence\Seed\" />
   </ItemGroup>
 
 </Project>

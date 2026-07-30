@@ -1,4 +1,5 @@
 ﻿using AutoHub.Domain.Entities.Features;
+using AutoHub.Infrastructure.Persistence.Seed;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -25,6 +26,8 @@ namespace AutoHub.Infrastructure.Persistence.Configurations.Features
                 .WithMany(f => f.VehicleTypeFeatures)
                 .HasForeignKey(vtf => vtf.FeatureId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasData(VehicleTypeFeatureSeedData.Data);
         }
     }
 }

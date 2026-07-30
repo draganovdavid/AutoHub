@@ -1,6 +1,8 @@
 ﻿using AutoHub.Domain.Entities.Listings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using static AutoHub.Domain.Constants.Listings.ListingImageConstants;
+
 
 namespace AutoHub.Infrastructure.Persistence.Configurations.Listings
 {
@@ -14,15 +16,15 @@ namespace AutoHub.Infrastructure.Persistence.Configurations.Listings
 
             builder.Property(i => i.FileName)
                 .IsRequired()
-                .HasMaxLength(255);
+                .HasMaxLength(FileNameMaxLength);
 
             builder.Property(i => i.FilePath)
                 .IsRequired()
-                .HasMaxLength(500);
+                .HasMaxLength(FilePathMaxLength);
 
             builder.Property(i => i.ContentType)
                 .IsRequired()
-                .HasMaxLength(100);
+                .HasMaxLength(ContentTypeMaxLength);
 
             builder.Property(i => i.FileSize)
                 .IsRequired();
@@ -35,7 +37,7 @@ namespace AutoHub.Infrastructure.Persistence.Configurations.Listings
 
             builder.Property(i => i.Extension)
                 .IsRequired()
-                .HasMaxLength(10);
+                .HasMaxLength(ExtensionMaxLength);
 
             builder.HasOne(i => i.Listing)
                 .WithMany(l => l.Images)

@@ -1,6 +1,8 @@
 ﻿using AutoHub.Domain.Entities.Features;
+using AutoHub.Infrastructure.Persistence.Seed;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using static AutoHub.Domain.Constants.Features.FeatureConstants;
 
 namespace AutoHub.Infrastructure.Persistence.Configurations.Features
 {
@@ -14,7 +16,7 @@ namespace AutoHub.Infrastructure.Persistence.Configurations.Features
 
             builder.Property(f => f.Name)
                 .IsRequired()
-                .HasMaxLength(150);
+                .HasMaxLength(NameMaxLength);
 
             builder.Property(f => f.IsActive)
                 .HasDefaultValue(true);
@@ -30,6 +32,8 @@ namespace AutoHub.Infrastructure.Persistence.Configurations.Features
                 .WithMany(fc => fc.Features)
                 .HasForeignKey(f => f.FeatureCategoryId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasData(FeatureSeedData.Data);
         }
     }
 }

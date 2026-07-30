@@ -1,6 +1,8 @@
 ﻿using AutoHub.Domain.Entities.Vehicles;
+using AutoHub.Infrastructure.Persistence.Seed;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using static AutoHub.Domain.Constants.Vehicles.VehicleTypeConstants;
 
 namespace AutoHub.Infrastructure.Persistence.Configurations.Vehicles
 {
@@ -14,11 +16,11 @@ namespace AutoHub.Infrastructure.Persistence.Configurations.Vehicles
 
             builder.Property(vt => vt.Name)
                 .IsRequired()
-                .HasMaxLength(50);
+                .HasMaxLength(VehicleTypeNameMaxLength);
 
             builder.Property(vt => vt.Slug)
                 .IsRequired()
-                .HasMaxLength(50);
+                .HasMaxLength(VehicleTypeSlugMaxLength);
 
             builder.Property(vt => vt.IsActive)
                 .HasDefaultValue(true);
@@ -33,6 +35,8 @@ namespace AutoHub.Infrastructure.Persistence.Configurations.Vehicles
                 .WithOne(vtf => vtf.VehicleType)
                 .HasForeignKey(vtf => vtf.VehicleTypeId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasData(VehicleTypeSeedData.Data);
         }
     }
 }
