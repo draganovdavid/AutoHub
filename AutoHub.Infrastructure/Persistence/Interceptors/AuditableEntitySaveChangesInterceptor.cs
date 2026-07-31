@@ -53,11 +53,23 @@ namespace AutoHub.Infrastructure.Persistence.Interceptors
                     continue;
                 }
 
-                // Превръщам hard delete в soft delete автоматично –
-                // никой Handler/Service не трябва да мисли за това ръчно.
-                entry.State = EntityState.Modified;
                 entry.Entity.IsDeleted = true;
                 entry.Entity.DeletedAt = utcNow;
+
+                // Оставям Unchanged вместо Modified — маркирам explicit
+                // само реално променените колони, за да избегна full-row
+                // UPDATE (риск от презаписване на паралелни промени по
+                // други колони — виж коментара по-долу за причината).
+                entry.State = EntityState.Unchanged;
+
+                entry.Property(nameof(ISoftDeletable.IsDeleted)).IsModified = true;
+                entry.Property(nameof(ISoftDeletable.DeletedAt)).IsModified = true;
+
+                if (entry.Entity is IAuditable auditable)
+                {
+                    auditable.UpdatedAt = utcNow;
+                    entry.Property(nameof(IAuditable.UpdatedAt)).IsModified = true;
+                }
             }
         }
     }
