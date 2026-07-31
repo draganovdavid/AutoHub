@@ -4,6 +4,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>afe4d6e7-9c0d-41cf-acef-b47058db5850</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AutoHub.Domain\AutoHub.Domain.csproj" />
+    <ProjectReference Include="..\AutoHub.Application\AutoHub.Application.csproj" />
     <ProjectReference Include="..\AutoHub.Infrastructure\AutoHub.Infrastructure.csproj" />
   </ItemGroup>
 
