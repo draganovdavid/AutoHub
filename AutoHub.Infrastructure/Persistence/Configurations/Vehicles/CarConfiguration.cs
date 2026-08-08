@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+using static AutoHub.Domain.Constants.Vehicles.CarConstants;
+
 namespace AutoHub.Infrastructure.Persistence.Configurations.Vehicles
 {
     public class CarConfiguration : IEntityTypeConfiguration<Car>
@@ -19,7 +21,7 @@ namespace AutoHub.Infrastructure.Persistence.Configurations.Vehicles
             builder.Property(c => c.EngineCapacity);
 
             builder.Property(c => c.VinNumber)
-                .HasMaxLength(17);
+                .HasMaxLength(VinNumberMaxLength);
 
             // VinNumber е НАРОЧНО не-уникален на DB ниво: потребителите (продавачи)
             // могат да сгрешат при ръчно въвеждане на VIN и не искаме unique
