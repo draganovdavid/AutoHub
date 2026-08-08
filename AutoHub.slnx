@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="AutoHub.Api/AutoHub.Api.csproj" />
+  <Project Path="AutoHub.Application/AutoHub.Application.csproj" Id="20909914-12c6-400a-9d14-ec6f826981d7" />
   <Project Path="AutoHub.Domain/AutoHub.Domain.csproj" />
   <Project Path="AutoHub.Infrastructure/AutoHub.Infrastructure.csproj" Id="23b5165b-1771-4690-99cb-b6dc06b4286f" />
 </Solution>
