@@ -1,5 +1,6 @@
 ﻿using AutoHub.Domain.Enums;
-using AutoHub.Domain.Identity;
+using AutoHub.Infrastructure.Identity;
+using AutoHub.Infrastructure.Persistence.Seed;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using static AutoHub.Domain.Constants.Identity.ApplicationUserConstants;

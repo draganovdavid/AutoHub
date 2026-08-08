@@ -1,5 +1,5 @@
 ﻿using AutoHub.Domain.Entities.Listings;
-using AutoHub.Domain.Identity;
+using AutoHub.Infrastructure.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
