@@ -1,15 +1,16 @@
-﻿using AutoHub.Domain.Entities;
+﻿using AutoHub.Application.Common.Interfaces;
+using AutoHub.Domain.Entities;
 using AutoHub.Domain.Entities.Features;
 using AutoHub.Domain.Entities.Listings;
 using AutoHub.Domain.Entities.Vehicles;
-using AutoHub.Domain.Identity;
+using AutoHub.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutoHub.Infrastructure.Persistence
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>, IApplicationDbContext
     {
         public ApplicationDbContext(
             DbContextOptions<ApplicationDbContext> options)
