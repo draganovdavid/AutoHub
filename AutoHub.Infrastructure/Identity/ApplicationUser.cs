@@ -2,7 +2,7 @@
 using AutoHub.Domain.Enums;
 using Microsoft.AspNetCore.Identity;
 
-namespace AutoHub.Domain.Identity
+namespace AutoHub.Infrastructure.Identity
 {
     public class ApplicationUser : IdentityUser<Guid>
     {
