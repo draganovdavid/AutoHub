@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace AutoHub.Infrastructure.Migrations
 {
     /// <inheritdoc />
@@ -74,7 +76,6 @@ namespace AutoHub.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    LogoUrl = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
                 },
                 constraints: table =>
@@ -314,7 +315,7 @@ namespace AutoHub.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
                     FeatureCategoryId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -561,6 +562,390 @@ namespace AutoHub.Infrastructure.Migrations
                         principalTable: "Listings",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "BodyTypes",
+                columns: new[] { "Id", "IsActive", "Name" },
+                values: new object[,]
+                {
+                    { 1, true, "Ван" },
+                    { 2, true, "Джип" },
+                    { 3, true, "Кабрио" },
+                    { 4, true, "Комби" },
+                    { 5, true, "Купе" },
+                    { 6, true, "Миниван" },
+                    { 7, true, "Седан" },
+                    { 8, true, "Стреч лимузина" },
+                    { 9, true, "Хечбек" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Brands",
+                columns: new[] { "Id", "IsActive", "Name" },
+                values: new object[,]
+                {
+                    { 1, true, "Mercedes-Benz" },
+                    { 2, true, "BMW" },
+                    { 3, true, "Audi" },
+                    { 4, true, "Volkswagen" },
+                    { 5, true, "Toyota" },
+                    { 6, true, "Ford" },
+                    { 7, true, "Opel" },
+                    { 8, true, "Renault" },
+                    { 9, true, "Peugeot" },
+                    { 10, true, "Škoda" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Colors",
+                columns: new[] { "Id", "IsActive", "Name" },
+                values: new object[,]
+                {
+                    { 1, true, "Бяло" },
+                    { 2, true, "Черно" },
+                    { 3, true, "Сиво" },
+                    { 4, true, "Сребристо" },
+                    { 5, true, "Синьо" },
+                    { 6, true, "Червено" },
+                    { 7, true, "Зелено" },
+                    { 8, true, "Кафяво" },
+                    { 9, true, "Жълто" },
+                    { 10, true, "Оранжево" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "EngineTypes",
+                columns: new[] { "Id", "IsActive", "Name" },
+                values: new object[,]
+                {
+                    { 1, true, "Бензинов" },
+                    { 2, true, "Дизелов" },
+                    { 3, true, "Електрически" },
+                    { 4, true, "Хибриден" },
+                    { 5, true, "Plug-in хибрид" },
+                    { 6, true, "Газ" },
+                    { 7, true, "Водород" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "EuroStandards",
+                columns: new[] { "Id", "IsActive", "Name" },
+                values: new object[,]
+                {
+                    { 1, true, "Euro 1" },
+                    { 2, true, "Euro 2" },
+                    { 3, true, "Euro 3" },
+                    { 4, true, "Euro 4" },
+                    { 5, true, "Euro 5" },
+                    { 6, true, "Euro 6" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "FeatureCategories",
+                columns: new[] { "Id", "IsActive", "Name" },
+                values: new object[,]
+                {
+                    { 1, true, "Безопасност" },
+                    { 2, true, "Комфорт" },
+                    { 3, true, "Други" },
+                    { 4, true, "Защита" },
+                    { 5, true, "Интериор" },
+                    { 6, true, "Специализирани" },
+                    { 7, true, "Екстериор" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Locations",
+                columns: new[] { "Id", "IsActive", "Name" },
+                values: new object[,]
+                {
+                    { 1, true, "София" },
+                    { 2, true, "Пловдив" },
+                    { 3, true, "Варна" },
+                    { 4, true, "Бургас" },
+                    { 5, true, "Русе" },
+                    { 6, true, "Стара Загора" },
+                    { 7, true, "Плевен" },
+                    { 8, true, "Сливен" },
+                    { 9, true, "Добрич" },
+                    { 10, true, "Шумен" },
+                    { 11, true, "Перник" },
+                    { 12, true, "Хасково" },
+                    { 13, true, "Пазарджик" },
+                    { 14, true, "Благоевград" },
+                    { 15, true, "Велико Търново" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Transmissions",
+                columns: new[] { "Id", "IsActive", "Name" },
+                values: new object[,]
+                {
+                    { 1, true, "Ръчна" },
+                    { 2, true, "Автоматична" },
+                    { 3, true, "Полуавтоматична" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "VehicleTypes",
+                columns: new[] { "Id", "IsActive", "Name", "Slug" },
+                values: new object[,]
+                {
+                    { 1, true, "Автомобили и Джипове", "avtomobiliidjipove" },
+                    { 2, true, "Бусове", "busove" },
+                    { 3, true, "Камиони", "kamioni" },
+                    { 4, true, "Мотоциклети", "mototsikleti" },
+                    { 5, true, "Селскостопански", "selskostopanski" },
+                    { 6, true, "Индустриални", "industrialni" },
+                    { 7, true, "Кари", "kari" },
+                    { 8, true, "Каравани", "karavani" },
+                    { 9, true, "Яхти и Лодки", "yahtiilodki" },
+                    { 10, true, "Ремаркета", "remarketa" },
+                    { 11, true, "Велосипеди", "velosipedi" },
+                    { 12, true, "Части", "chasti" },
+                    { 13, true, "Аксесоари", "aksesoari" },
+                    { 14, true, "Гуми и джанти", "gumiidjanti" },
+                    { 15, true, "Купува", "kupuva" },
+                    { 16, true, "Услуги", "uslugi" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Features",
+                columns: new[] { "Id", "FeatureCategoryId", "IsActive", "Name" },
+                values: new object[,]
+                {
+                    { 1, 1, true, "GPS система за проследяване" },
+                    { 2, 1, true, "Адаптивни предни светлини" },
+                    { 3, 1, true, "Антиблокираща система" },
+                    { 4, 1, true, "Въздушни възглавници - Задни" },
+                    { 5, 1, true, "Въздушни възглавници - Предни" },
+                    { 6, 1, true, "Въздушни възглавници - Странични" },
+                    { 7, 1, true, "Ел. разпределяне на спирачното усилие" },
+                    { 8, 1, true, "Електронна програма за стабилизиране" },
+                    { 9, 1, true, "Контрол на налягането на гумите" },
+                    { 10, 1, true, "Парктроник" },
+                    { 11, 1, true, "Система ISOFIX" },
+                    { 12, 1, true, "Система за динамична устойчивост" },
+                    { 13, 1, true, "Система за защита от пробуксуване" },
+                    { 14, 1, true, "Система за контрол на дистанцията" },
+                    { 15, 1, true, "Система за контрол на спускането" },
+                    { 16, 2, true, "360 камера / Задна камера" },
+                    { 17, 2, true, "Apple CarPlay / Android Auto" },
+                    { 18, 2, true, "Auto Start Stop function" },
+                    { 19, 2, true, "Bluetooth / handsfree система" },
+                    { 20, 2, true, "DVD, TV" },
+                    { 21, 2, true, "Head up display" },
+                    { 22, 2, true, "Steptronic / Tiptronic" },
+                    { 23, 2, true, "USB, audio/video, IN/AUX изводи" },
+                    { 24, 2, true, "Автоматично затваряне на багажника" },
+                    { 25, 2, true, "Адаптивно въздушно окачване" },
+                    { 26, 2, true, "Безключово палене" },
+                    { 27, 2, true, "Блокаж на диференциала" },
+                    { 28, 2, true, "Бордкомпютър" },
+                    { 29, 2, true, "Бързи / бавни скорости" },
+                    { 30, 2, true, "Вентилация на седалките" },
+                    { 31, 2, true, "Датчик за светлина" },
+                    { 32, 2, true, "Ел. огледала" },
+                    { 33, 2, true, "Ел. стъкла" },
+                    { 34, 2, true, "Ел. регулиране на седалките" },
+                    { 35, 2, true, "Ел. усилвател на волана" },
+                    { 36, 2, true, "Климатик" },
+                    { 37, 2, true, "Климатроник" },
+                    { 38, 2, true, "Мултифункционален волан" },
+                    { 39, 2, true, "Навигация" },
+                    { 40, 2, true, "Отопление на волана" },
+                    { 41, 2, true, "Печка" },
+                    { 42, 2, true, "Подгряване на предното стъкло" },
+                    { 43, 2, true, "Подгряване на седалките" },
+                    { 44, 2, true, "Регулиране на волана" },
+                    { 45, 2, true, "Сензор за дъжд" },
+                    { 46, 2, true, "Серво усилвател на волана" },
+                    { 47, 2, true, "Система за измиване на фаровете" },
+                    { 48, 2, true, "Система за контрол на скоростта (автопилот)" },
+                    { 49, 2, true, "Термопомпа" },
+                    { 50, 2, true, "Хладилна жабка" },
+                    { 51, 3, true, "4x4" },
+                    { 52, 3, true, "7 места" },
+                    { 53, 3, true, "Buy back" },
+                    { 54, 3, true, "Бартер" },
+                    { 55, 3, true, "Газова уредба" },
+                    { 56, 3, true, "Дълга база" },
+                    { 57, 3, true, "Капариран / Продаден" },
+                    { 58, 3, true, "Катастрофирал" },
+                    { 59, 3, true, "Къса база" },
+                    { 60, 3, true, "Лизинг" },
+                    { 61, 3, true, "Метанова уредба" },
+                    { 62, 3, true, "На части" },
+                    { 63, 3, true, "Напълно обслужен" },
+                    { 64, 3, true, "Нов внос" },
+                    { 65, 3, true, "С регистрация" },
+                    { 66, 3, true, "Сервизна книжка" },
+                    { 67, 3, true, "Тунинг" },
+                    { 68, 4, true, "OFFROAD пакет" },
+                    { 69, 4, true, "Аларма" },
+                    { 70, 4, true, "Брониран" },
+                    { 71, 4, true, "Каско" },
+                    { 72, 4, true, "Лебедка" },
+                    { 73, 4, true, "Централно заключване" },
+                    { 74, 5, true, "Велурен салон" },
+                    { 75, 5, true, "Десен волан" },
+                    { 76, 5, true, "Кожен салон" },
+                    { 77, 5, true, "Светъл салон" },
+                    { 78, 6, true, "TAXI" },
+                    { 79, 6, true, "За хора с увреждания" },
+                    { 80, 6, true, "Катафалка" },
+                    { 81, 6, true, "Линейка" },
+                    { 82, 6, true, "Учебен" },
+                    { 83, 6, true, "Хладилен" },
+                    { 84, 6, true, "Хомологация N1" },
+                    { 85, 7, true, "2(3) Врати" },
+                    { 86, 7, true, "4(5) Врати" },
+                    { 87, 7, true, "LED фарове" },
+                    { 88, 7, true, "Ксенонови фарове" },
+                    { 89, 7, true, "Лети джанти" },
+                    { 90, 7, true, "Металик" },
+                    { 91, 7, true, "Панорамен люк" },
+                    { 92, 7, true, "Рейлинг на покрива" },
+                    { 93, 7, true, "Спойлери" },
+                    { 94, 7, true, "Теглич" },
+                    { 95, 7, true, "Халогенни фарове" },
+                    { 96, 7, true, "Шибедах" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "VehicleModels",
+                columns: new[] { "Id", "BrandId", "IsActive", "Name" },
+                values: new object[,]
+                {
+                    { 1, 1, true, "A-Class" },
+                    { 2, 1, true, "C-Class" },
+                    { 3, 1, true, "E-Class" },
+                    { 4, 1, true, "GLE" },
+                    { 5, 2, true, "3 Series" },
+                    { 6, 2, true, "5 Series" },
+                    { 7, 2, true, "X5" },
+                    { 8, 3, true, "A4" },
+                    { 9, 3, true, "A6" },
+                    { 10, 3, true, "Q5" },
+                    { 11, 4, true, "Golf" },
+                    { 12, 4, true, "Passat" },
+                    { 13, 4, true, "Tiguan" },
+                    { 14, 5, true, "Corolla" },
+                    { 15, 5, true, "RAV4" },
+                    { 16, 6, true, "Focus" },
+                    { 17, 6, true, "Fiesta" },
+                    { 18, 7, true, "Astra" },
+                    { 19, 7, true, "Corsa" },
+                    { 20, 8, true, "Megane" },
+                    { 21, 8, true, "Clio" },
+                    { 22, 9, true, "308" },
+                    { 23, 9, true, "3008" },
+                    { 24, 10, true, "Octavia" },
+                    { 25, 10, true, "Superb" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "VehicleTypeFeatures",
+                columns: new[] { "FeatureId", "VehicleTypeId" },
+                values: new object[,]
+                {
+                    { 1, 1 },
+                    { 2, 1 },
+                    { 3, 1 },
+                    { 4, 1 },
+                    { 5, 1 },
+                    { 6, 1 },
+                    { 7, 1 },
+                    { 8, 1 },
+                    { 9, 1 },
+                    { 10, 1 },
+                    { 11, 1 },
+                    { 12, 1 },
+                    { 13, 1 },
+                    { 14, 1 },
+                    { 15, 1 },
+                    { 16, 1 },
+                    { 17, 1 },
+                    { 18, 1 },
+                    { 19, 1 },
+                    { 20, 1 },
+                    { 21, 1 },
+                    { 22, 1 },
+                    { 23, 1 },
+                    { 24, 1 },
+                    { 25, 1 },
+                    { 26, 1 },
+                    { 27, 1 },
+                    { 28, 1 },
+                    { 29, 1 },
+                    { 30, 1 },
+                    { 31, 1 },
+                    { 32, 1 },
+                    { 33, 1 },
+                    { 34, 1 },
+                    { 35, 1 },
+                    { 36, 1 },
+                    { 37, 1 },
+                    { 38, 1 },
+                    { 39, 1 },
+                    { 40, 1 },
+                    { 41, 1 },
+                    { 42, 1 },
+                    { 43, 1 },
+                    { 44, 1 },
+                    { 45, 1 },
+                    { 46, 1 },
+                    { 47, 1 },
+                    { 48, 1 },
+                    { 49, 1 },
+                    { 50, 1 },
+                    { 51, 1 },
+                    { 52, 1 },
+                    { 53, 1 },
+                    { 54, 1 },
+                    { 55, 1 },
+                    { 56, 1 },
+                    { 57, 1 },
+                    { 58, 1 },
+                    { 59, 1 },
+                    { 60, 1 },
+                    { 61, 1 },
+                    { 62, 1 },
+                    { 63, 1 },
+                    { 64, 1 },
+                    { 65, 1 },
+                    { 66, 1 },
+                    { 67, 1 },
+                    { 68, 1 },
+                    { 69, 1 },
+                    { 70, 1 },
+                    { 71, 1 },
+                    { 72, 1 },
+                    { 73, 1 },
+                    { 74, 1 },
+                    { 75, 1 },
+                    { 76, 1 },
+                    { 77, 1 },
+                    { 78, 1 },
+                    { 79, 1 },
+                    { 80, 1 },
+                    { 81, 1 },
+                    { 82, 1 },
+                    { 83, 1 },
+                    { 84, 1 },
+                    { 85, 1 },
+                    { 86, 1 },
+                    { 87, 1 },
+                    { 88, 1 },
+                    { 89, 1 },
+                    { 90, 1 },
+                    { 91, 1 },
+                    { 92, 1 },
+                    { 93, 1 },
+                    { 94, 1 },
+                    { 95, 1 },
+                    { 96, 1 }
                 });
 
             migrationBuilder.CreateIndex(

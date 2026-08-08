@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutoHub.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260730215128_SeedLookupData")]
-    partial class SeedLookupData
+    [Migration("20260806203552_InitialCreateDb")]
+    partial class InitialCreateDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -2089,6 +2089,183 @@ namespace AutoHub.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("VehicleModels", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BrandId = 1,
+                            IsActive = true,
+                            Name = "A-Class"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BrandId = 1,
+                            IsActive = true,
+                            Name = "C-Class"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BrandId = 1,
+                            IsActive = true,
+                            Name = "E-Class"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BrandId = 1,
+                            IsActive = true,
+                            Name = "GLE"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            BrandId = 2,
+                            IsActive = true,
+                            Name = "3 Series"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            BrandId = 2,
+                            IsActive = true,
+                            Name = "5 Series"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            BrandId = 2,
+                            IsActive = true,
+                            Name = "X5"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            BrandId = 3,
+                            IsActive = true,
+                            Name = "A4"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            BrandId = 3,
+                            IsActive = true,
+                            Name = "A6"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            BrandId = 3,
+                            IsActive = true,
+                            Name = "Q5"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            BrandId = 4,
+                            IsActive = true,
+                            Name = "Golf"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            BrandId = 4,
+                            IsActive = true,
+                            Name = "Passat"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            BrandId = 4,
+                            IsActive = true,
+                            Name = "Tiguan"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            BrandId = 5,
+                            IsActive = true,
+                            Name = "Corolla"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            BrandId = 5,
+                            IsActive = true,
+                            Name = "RAV4"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            BrandId = 6,
+                            IsActive = true,
+                            Name = "Focus"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            BrandId = 6,
+                            IsActive = true,
+                            Name = "Fiesta"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            BrandId = 7,
+                            IsActive = true,
+                            Name = "Astra"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            BrandId = 7,
+                            IsActive = true,
+                            Name = "Corsa"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            BrandId = 8,
+                            IsActive = true,
+                            Name = "Megane"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            BrandId = 8,
+                            IsActive = true,
+                            Name = "Clio"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            BrandId = 9,
+                            IsActive = true,
+                            Name = "308"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            BrandId = 9,
+                            IsActive = true,
+                            Name = "3008"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            BrandId = 10,
+                            IsActive = true,
+                            Name = "Octavia"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            BrandId = 10,
+                            IsActive = true,
+                            Name = "Superb"
+                        });
                 });
 
             modelBuilder.Entity("AutoHub.Domain.Entities.Vehicles.VehicleType", b =>
@@ -2239,7 +2416,7 @@ namespace AutoHub.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("AutoHub.Domain.Identity.ApplicationUser", b =>
+            modelBuilder.Entity("AutoHub.Infrastructure.Identity.ApplicationUser", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -2553,7 +2730,7 @@ namespace AutoHub.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AutoHub.Domain.Identity.ApplicationUser", null)
+                    b.HasOne("AutoHub.Infrastructure.Identity.ApplicationUser", null)
                         .WithMany("Favorites")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2570,7 +2747,7 @@ namespace AutoHub.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("AutoHub.Domain.Identity.ApplicationUser", null)
+                    b.HasOne("AutoHub.Infrastructure.Identity.ApplicationUser", null)
                         .WithMany("Listings")
                         .HasForeignKey("SellerId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -2647,7 +2824,7 @@ namespace AutoHub.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
                 {
-                    b.HasOne("AutoHub.Domain.Identity.ApplicationUser", null)
+                    b.HasOne("AutoHub.Infrastructure.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2656,7 +2833,7 @@ namespace AutoHub.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
                 {
-                    b.HasOne("AutoHub.Domain.Identity.ApplicationUser", null)
+                    b.HasOne("AutoHub.Infrastructure.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2671,7 +2848,7 @@ namespace AutoHub.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AutoHub.Domain.Identity.ApplicationUser", null)
+                    b.HasOne("AutoHub.Infrastructure.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2680,7 +2857,7 @@ namespace AutoHub.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
                 {
-                    b.HasOne("AutoHub.Domain.Identity.ApplicationUser", null)
+                    b.HasOne("AutoHub.Infrastructure.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2775,7 +2952,7 @@ namespace AutoHub.Infrastructure.Migrations
                     b.Navigation("VehicleTypeFeatures");
                 });
 
-            modelBuilder.Entity("AutoHub.Domain.Identity.ApplicationUser", b =>
+            modelBuilder.Entity("AutoHub.Infrastructure.Identity.ApplicationUser", b =>
                 {
                     b.Navigation("Favorites");
 
