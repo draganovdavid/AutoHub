@@ -1,4 +1,5 @@
 ﻿using AutoHub.Domain.Entities.Vehicles;
+using AutoHub.Infrastructure.Persistence.Seed;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -35,6 +36,8 @@ namespace AutoHub.Infrastructure.Persistence.Configurations.Vehicles
                 vm.Name
             })
             .IsUnique();
+
+            builder.HasData(VehicleModelSeedData.Data);
         }
     }
 }
