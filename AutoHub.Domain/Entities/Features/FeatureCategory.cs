@@ -2,7 +2,7 @@
 
 namespace AutoHub.Domain.Entities.Features
 {
-    public class FeatureCategory : BaseEntity<int>
+    public class FeatureCategory : BaseEntity<int>, ILookupEntity
     {
         public string Name { get; set; } = null!;
 

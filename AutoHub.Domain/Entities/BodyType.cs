@@ -2,7 +2,7 @@
 
 namespace AutoHub.Domain.Entities
 {
-    public class BodyType : BaseEntity<int>
+    public class BodyType : BaseEntity<int>, ILookupEntity
     {
         public string Name { get; set; } = null!;
 

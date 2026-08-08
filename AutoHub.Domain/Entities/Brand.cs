@@ -3,7 +3,7 @@ using AutoHub.Domain.Entities.Vehicles;
 
 namespace AutoHub.Domain.Entities
 {
-    public class Brand : BaseEntity<int>
+    public class Brand : BaseEntity<int>, ILookupEntity
     {
         public string Name { get; set; } = null!;
 

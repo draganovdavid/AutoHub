@@ -2,7 +2,7 @@
 
 namespace AutoHub.Domain.Entities
 {
-    public class EuroStandard : BaseEntity<int>
+    public class EuroStandard : BaseEntity<int>, ILookupEntity
     {
         public string Name { get; set; } = null!;
 

@@ -2,7 +2,7 @@
 
 namespace AutoHub.Domain.Entities
 {
-    public class Color : BaseEntity<int>
+    public class Color : BaseEntity<int>, ILookupEntity
     {
         public string Name { get; set; } = null!;
 

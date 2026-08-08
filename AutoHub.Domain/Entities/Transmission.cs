@@ -2,7 +2,7 @@
 
 namespace AutoHub.Domain.Entities
 {
-    public class Transmission : BaseEntity<int>
+    public class Transmission : BaseEntity<int>, ILookupEntity
     {
         public string Name { get; set; } = null!;
 

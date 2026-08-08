@@ -2,7 +2,7 @@
 
 namespace AutoHub.Domain.Entities
 {
-    public class EngineType : BaseEntity<int>
+    public class EngineType : BaseEntity<int>, ILookupEntity
     {
         public string Name { get; set; } = null!;
 
