@@ -41,6 +41,11 @@ namespace AutoHub.Api.Middleware
                     "The request could not be completed due to invalid or conflicting data.",
                     null),
 
+                AuthenticationException authException => (
+                    StatusCodes.Status401Unauthorized,
+                    authException.Message,
+                    null),
+
                 _ => (
                     StatusCodes.Status500InternalServerError,
                     "An unexpected error occurred.",

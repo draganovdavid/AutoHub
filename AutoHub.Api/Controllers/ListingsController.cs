@@ -1,10 +1,11 @@
 ﻿using AutoHub.Api.Contracts.Listings;
+using AutoHub.Application.Common.Exceptions;
+using AutoHub.Application.Common.Interfaces;
 using AutoHub.Application.Listings.Commands.CreateCarListing;
 using AutoHub.Application.Listings.Queries.GetListingById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
-using static AutoHub.Domain.Constants.Identity.TestSellerConstants;
 
 namespace AutoHub.Api.Controllers
 {
@@ -13,10 +14,12 @@ namespace AutoHub.Api.Controllers
     public class ListingsController : ControllerBase
     {
         private readonly ISender _sender;
+        private readonly ICurrentUserService _currentUserService;
 
-        public ListingsController(ISender sender)
+        public ListingsController(ISender sender, ICurrentUserService currentUserService)
         {
             _sender = sender;
+            _currentUserService = currentUserService;
         }
 
         [HttpGet("{id:guid}")]
@@ -26,10 +29,15 @@ namespace AutoHub.Api.Controllers
             return Ok(result);
         }
 
+        [Authorize]
         [HttpPost("cars")]
-        public async Task<ActionResult<Guid>> CreateCarListing([FromBody] CreateCarListingRequest request,
+        public async Task<ActionResult<Guid>> CreateCarListing(
+            [FromBody] CreateCarListingRequest request,
             CancellationToken cancellationToken)
         {
+            var sellerId = _currentUserService.UserId
+                ?? throw new AuthenticationException("Unable to resolve the current user.");
+
             var command = new CreateCarListingCommand(
                 Title: request.Title,
                 Description: request.Description,
@@ -38,7 +46,7 @@ namespace AutoHub.Api.Controllers
                 WithVat: request.WithVat,
                 PhoneNumber: request.PhoneNumber,
                 LocationId: request.LocationId,
-                SellerId: TestSellerId,
+                SellerId: sellerId,
                 BrandId: request.BrandId,
                 VehicleModelId: request.VehicleModelId,
                 ProductionYear: request.ProductionYear,

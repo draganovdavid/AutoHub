@@ -8,7 +8,6 @@ namespace AutoHub.Infrastructure.Identity
     {
         public SellerType SellerType { get; set; } = SellerType.Individual;
 
-        // Попълват се само когато SellerType == Dealer; за частни лица остават null.
         public string? CompanyName { get; set; }
 
         public string? CompanyLogoUrl { get; set; }
