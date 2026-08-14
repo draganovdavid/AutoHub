@@ -1,8 +1,10 @@
 ﻿using AutoHub.Api.Contracts.Listings;
 using AutoHub.Application.Common.Exceptions;
 using AutoHub.Application.Common.Interfaces;
+using AutoHub.Application.Common.Models;
 using AutoHub.Application.Listings.Commands.CreateCarListing;
 using AutoHub.Application.Listings.Queries.GetListingById;
+using AutoHub.Application.Listings.Queries.GetListings;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -26,6 +28,33 @@ namespace AutoHub.Api.Controllers
         public async Task<ActionResult<ListingDto>> GetById(Guid id, CancellationToken cancellationToken)
         {
             var result = await _sender.Send(new GetListingByIdQuery(id), cancellationToken);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<PaginatedList<ListingSummaryDto>>> GetAll(
+            [FromQuery] GetListingsRequest request,
+            CancellationToken cancellationToken)
+        {
+            var query = new GetListingsQuery(
+                request.SearchTerm,
+                request.BrandId,
+                request.VehicleModelId,
+                request.LocationId,
+                request.BodyTypeId,
+                request.ColorId,
+                request.EngineTypeId,
+                request.TransmissionId,
+                request.MinPrice,
+                request.MaxPrice,
+                request.MinYear,
+                request.MaxYear,
+                request.MaxMileage,
+                request.SortOrder,
+                request.Page,
+                request.PageSize);
+
+            var result = await _sender.Send(query, cancellationToken);
             return Ok(result);
         }
 
